@@ -1,0 +1,17 @@
+{
+    "name": "Flask Devcontainer",
+    "dockerComposeFile": [
+        "../docker-compose.yml", // Base Compose File
+        "docker-compose.dev.yml" // Development Override
+    ],
+    "service": "flask",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
+}

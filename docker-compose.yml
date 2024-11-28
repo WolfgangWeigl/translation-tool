@@ -1,0 +1,24 @@
+# Docker Compose for production
+
+name: translation-tool
+
+services:
+  libretranslate:
+    container_name: libretranslate
+    image: libretranslate/libretranslate
+    ports:
+      - 5000:5000
+    environment:
+      - LT_LOAD_ONLY=en,de
+    
+  flask:
+    container_name: flask
+    build:
+      context: ./app
+      dockerfile: Dockerfile.prod
+    ports:
+      - 80:80
+    environment:
+      - FLASK_APP=app
+      - FLASK_ENV=production
+    command: gunicorn -w 4 -b 0.0.0.0:80 app:app
