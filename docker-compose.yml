@@ -1,15 +1,23 @@
-# Docker Compose for production
-
-name: translation-tool
-
 services:
   libretranslate:
     container_name: libretranslate
-    image: libretranslate/libretranslate
+    build: 
+      context: ./libretranslate
+      dockerfile: Dockerfile
+    restart: unless-stopped
     ports:
-      - 5000:5000
+      - "5000:5000"
     environment:
       - LT_LOAD_ONLY=en,de
+      - LT_DISABLE_WEB_UI=false
+    volumes:
+      - volume:/home/libretranslate/.local:rw
+    healthcheck:
+      test: curl --silent --fail  http://libretranslate:5000/languages
+      interval: 10s  
+      retries: 999      
+      start_period: 10s 
+      timeout: 5s  
     
   flask:
     container_name: flask
@@ -17,8 +25,13 @@ services:
       context: ./app
       dockerfile: Dockerfile.prod
     ports:
-      - 80:80
+      - "80:80"
     environment:
       - FLASK_APP=app
       - FLASK_ENV=production
-    command: gunicorn -w 4 -b 0.0.0.0:80 app:app
+    depends_on:
+      libretranslate:
+        condition: service_healthy
+
+volumes:
+  volume:

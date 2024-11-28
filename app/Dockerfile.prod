@@ -4,12 +4,31 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
+# Install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy app files
 COPY . .
 
+# Set environment variables for Flask
+# Default build-in variables
 ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=80
 ENV FLASK_ENV=production
+ENV FLASK_DEBUG=false
+ENV FLASK_TESTING=false
 
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:80", "app:app"]
+# Custom variables
+ENV UPLOAD_FOLDER=/temp/uploads/
+ENV EXTRACTION_FOLDER=/temp/extractedFiles/
+ENV TRANSLATION_FOLDER=/temp/translatedFiles/
+ENV MAX_HTTP_BUFFER_SIZE=100000000
+ENV LT_URL=http://libretranslate:5000
+
+# Expose Flask port
+EXPOSE 80
+
+# Run the Flask application
+CMD python app.py
