@@ -12,7 +12,8 @@ services:
       context: ./app
       dockerfile: Dockerfile.dev
     volumes:
-      - ./app:/app:rw # code mounted into container
+      - ./app:/workspace/app:rw # code mounted into container
+      - ./tests:/workspace/tests:rw # tests mounted into container
+      - ./.vscode:/workspace/.vscode:rw # vscode mounted into container
     environment:
       - FLASK_ENV = development
-  

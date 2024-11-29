@@ -1,24 +1,31 @@
 # Byte-compiled / compiled Python files
+###############################
 __pycache__/
 *.py[cod]
 
 # Virtual environment
+######################
 venv/
 .venv/
 
-# Docker related
+# Docker related files
+#######################
 *.log
 *.pid
 *.out
 *.bak
 
 # Environment variables file
+##############################
 .env
 
-# IDE files
+# IDE and editor files
+#######################
 .vscode/
 .idea/
 
-# Test output
+# Test output and coverage
+###########################
 coverage/
 *.coverage
+.pytest_cache/

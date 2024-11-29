@@ -5,15 +5,16 @@
         "docker-compose.dev.yml" // Development Override
     ],
     "service": "flask",
-    "workspaceFolder": "/app",
+    "workspaceFolder": "/workspace",
+    "postCreateCommand": "pytest tests/smoke_tests/", // Start Smoke Tests on Container Startup
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-python.python",
                 "ms-python.isort",
-                "ms-azuretools.vscode-docker"
+                "ms-azuretools.vscode-docker",
+                "littlefoxteam.vscode-python-test-adapter"
             ]
         }
-    },
-    "postCreateCommand": "echo 'Container started!'"
+    }
 }
