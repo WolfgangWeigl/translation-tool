@@ -15,5 +15,6 @@ services:
       - ./app:/workspace/app:rw # code mounted into container
       - ./tests:/workspace/tests:rw # tests mounted into container
       - ./.vscode:/workspace/.vscode:rw # vscode mounted into container
+      - ./.devcontainer:/workspace/.devcontainer:rw # devcontainer mounted into container
     environment:
       - FLASK_ENV = development
