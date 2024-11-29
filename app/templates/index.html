@@ -86,7 +86,7 @@
 
         <!-- Target Language Selection -->
         <div class='form-floating mb-3'>
-          <select class='form-select' id='targetLanguage' name='target-language' required>
+          <select class='form-select' id='targetLanguage' name='target-language' required disabled>
             <option value='' disabled selected>---</option>
           </select>
           <label for='targetLanguage' class='form-label'>Target Language</label>
@@ -158,6 +158,21 @@
     document.getElementById('fileinput').addEventListener('change', e => {
       document.getElementById('filename').textContent = e.target.files[0]?.name || 'No file selected';
     });
+  </script>
+
+  <script>
+  document.getElementById("originalLanguage").addEventListener("change", function() {
+    let target = document.getElementById("targetLanguage"); 
+
+    if(this.value !== "") {
+      target.disabled = false;
+    } else {
+      target.disabled = true;
+    }
+  });
+
+  source.addEventListener("change")
+
   </script>
 
   <script>
