@@ -6,14 +6,15 @@
     ],
     "service": "flask",
     "workspaceFolder": "/workspace",
-    "postCreateCommand": "pytest tests/smoke_tests/", // Start Smoke Tests on Container Startup
+    "postCreateCommand": "cd tests/smoke_tests && pytest", // Start Smoke Tests on Container Startup
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-python.python",
                 "ms-python.isort",
                 "ms-azuretools.vscode-docker",
-                "littlefoxteam.vscode-python-test-adapter"
+                "littlefoxteam.vscode-python-test-adapter",
+                "samuelcolvin.jinjahtml"
             ]
         }
     }
