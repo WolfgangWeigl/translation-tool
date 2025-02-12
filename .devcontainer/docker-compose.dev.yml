@@ -18,3 +18,5 @@ services:
       - ./.devcontainer:/workspace/.devcontainer:rw # devcontainer mounted into container
     environment:
       - FLASK_ENV = development
+    depends_on:
+      - libretranslate

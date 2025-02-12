@@ -25,7 +25,7 @@ ENV UPLOAD_FOLDER=/temp/uploads/
 ENV EXTRACTION_FOLDER=/temp/extractedFiles/
 ENV TRANSLATION_FOLDER=/temp/translatedFiles/
 ENV MAX_HTTP_BUFFER_SIZE=100000000
-ENV LT_URL=http://libretranslate:5000
+ENV LT_URL=http://libretranslate-dev:5000
 
 # Expose Flask port
 EXPOSE 80

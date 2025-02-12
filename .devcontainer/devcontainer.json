@@ -14,7 +14,9 @@
                 "ms-python.isort",
                 "ms-azuretools.vscode-docker",
                 "littlefoxteam.vscode-python-test-adapter",
-                "samuelcolvin.jinjahtml"
+                "samuelcolvin.jinjahtml",
+                "codeium.codeium",
+                "ms-toolsai.jupyter"
             ]
         }
     }

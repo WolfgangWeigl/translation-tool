@@ -13,7 +13,7 @@ services:
     volumes:
       - libretranslate-models:/home/libretranslate/.local:rw
     healthcheck:
-      test: curl --silent --fail  http://libretranslate:5000/languages
+      test: curl --silent --fail  http://localhost:5000/languages
       interval: 10s  
       retries: 999      
       start_period: 10s 
