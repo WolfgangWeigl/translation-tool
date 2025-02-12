@@ -29,3 +29,8 @@ venv/
 coverage/
 *.coverage
 .pytest_cache/
+
+# Other Files
+##############################
+old/
+mbz-files/
