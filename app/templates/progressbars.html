@@ -1,0 +1,32 @@
+<!-- Progress Bars -->
+<div id='progress-bars' class='container mt-3 mb-3' hidden>
+
+  <!-- Upload Progress Bar -->
+  <div class='d-flex align-items-center mb-2 border border-primary rounded'>
+    <small class='w-25 text-center text-muted user-select-none'>Upload</small>
+    <div class='progress flex-grow-1' role='progressbar' style="height: 21px;">
+      <div id='progress-bar-1' class='progress-bar progress-bar-striped progress-bar-animated' style='width: 0%'>0%
+      </div>
+    </div>
+  </div>
+
+  <!-- Extraction Progress Bar -->
+  {% if type=='MBZ' %}
+  <div class='d-flex align-items-center mb-2 border border-primary rounded'>
+    <small class='w-25 text-center text-muted user-select-none'>Unpacking</small>
+    <div class='progress flex-grow-1' role='progressbar' style="height: 21px;">
+      <div id='progress-bar-2' class='progress-bar progress-bar-striped progress-bar-animated' style='width: 0%'>0%
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Translating Progress Bar -->
+  <div class='d-flex align-items-center mb-2 border border-primary rounded'>
+    <small class='w-25 text-center text-muted user-select-none'>Translating</small>
+    <div class='progress flex-grow-1' role='progressbar' style="height: 21px;">
+      <div id='progress-bar-3' class='progress-bar progress-bar-striped progress-bar-animated' style='width: 0%'>0%
+      </div>
+    </div>
+  </div>
+</div>

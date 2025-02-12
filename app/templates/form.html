@@ -1,0 +1,79 @@
+<!-- Form -->
+<form id='upload-form'>
+
+
+  <!-- File Selection -->
+  <div class='input-group mb-3 mt-3 position-relative'>
+    <input class='position-absolute opacity-0 w-100 h-100' type='file' id='fileinput' name='file-input'
+      accept='{{ "." + type.lower() }}' required>
+    <label class='form-control w-25 btn btn-outline-primary user-select-none' for='fileinput'
+      style='border-radius: 0.375em 0 0 0.375em;'>Select {{ type }} File</label>
+    <div class='form-control w-75 text-muted user-select-none' id='filename'>No file selected</div>
+  </div>
+
+
+  <!-- Source Language Selection -->
+  <div class='form-floating mb-3'>
+    <select class='form-select' id='originalLanguage' name='original-language' required>
+      <option value='' disabled selected>---</option>
+      {% for lang in langs %}
+      <option value='{{ lang["code"] }}'>{{ lang["name"] }}</option>
+      {% endfor %}
+    </select>
+    <label for='originalLanguage' class='form-label'>Original Language</label>
+  </div>
+
+
+  <!-- Target Language Selection -->
+  <div class='form-floating mb-3'>
+    <select class='form-select' id='targetLanguage' name='target-language' required disabled>
+      <option value='' disabled selected>---</option>
+    </select>
+    <label for='targetLanguage' class='form-label'>Target Language</label>
+  </div>
+
+
+  <!-- Translation Type Selection -->
+  <div class='d-flex align-items-center'>
+    <small class='me-4 text-muted user-select-none'>Translation type:</small>
+    <div>
+      <div class='form-check'>
+        <input class='form-check-input' type='radio' name='translationType' id='singlelang' value='single' required
+          checked>
+        <label class='form-check-label user-select-none' for='singlelang'>One Language</label>
+      </div>
+      <div class='form-check'>
+        <input class='form-check-input' type='radio' name='translationType' id='multilang' value='multi' required
+          disabled>
+        <label class='form-check-label user-select-none' for='multilang'>Multiple Languages</label>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Buttons -->
+  <div class="container d-flex justify-content-center">
+    <!-- Submit Button -->
+    <div class='text-center m-1'>
+      <button id='translateBtn' type='button' class='btn btn-outline-primary'>
+        <i class='bi bi-translate me-2'></i>Translate
+      </button>
+    </div>
+    <!-- Editor Button -->
+    <div class='text-center m-1' hidden>
+      <button id='editorBtn' type='button' class='btn btn-outline-primary'>
+        <i class='bi bi-pencil-square me-2'></i>Editor
+      </button>
+    </div>
+    <!-- Download Button -->
+    <div class='text-center m-1' hidden>
+      <a href="/download" download="translation.xml">
+        <button id='downloadBtn' type='button' class='btn btn-outline-primary'>
+          <i class='bi bi-download me-2'></i>Download
+        </button>
+      </a>
+    </div>
+  </div>
+
+
+</form>

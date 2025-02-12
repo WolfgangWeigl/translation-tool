@@ -3,13 +3,13 @@ import secrets
 import requests
 
 from extractor import extract_mbz
+from translator import translate_mbz
+from xml_translator import translate_xml
 
 from libretranslatepy import LibreTranslateAPI
 
-from flask import Flask, render_template
-from flask_socketio import SocketIO, emit
-
-from lxml import etree as ET
+from flask import Flask, render_template, jsonify
+from flask_socketio import SocketIO
 
 app = Flask(__name__)
 
@@ -26,97 +26,94 @@ socketio = SocketIO(app,
                     logger=True, 
                     enginio_logger=True)
 
+# Speichert temporär die Form-Daten
+temp_data = {}
+
+# Hauptseite
 @app.route('/')
 def index():
-    lt = LibreTranslateAPI(app.config['LT_URL'])
     try:
         requests.get(app.config['LT_URL'], timeout=10)
-        return render_template('index.html', langs=lt.languages())
+        return render_template('index.html')
     
     except Exception as e:
         print(f"Ein Fehler ist aufgetreten: {type(e).__name__}")
         return render_template('error.html', error={"type": type(e).__name__, "description": e})
+    
+# Editor Seite
+@app.route('/editor')
+def editor():
+    return render_template('editor.html')
 
+# MBZ Form Seite
+@app.route('/mbz')
+def mbz():
+    lt = LibreTranslateAPI(app.config['LT_URL'])
+    return render_template('mbz.html', type="MBZ",langs=lt.languages())
 
+# XML Form Seite
+@app.route('/xml')
+def xml():
+    lt = LibreTranslateAPI(app.config['LT_URL'])
+    return render_template('xml.html', type="XML", langs=lt.languages())
+
+# Handle Editor Content
+@app.route('/get_diff_data')
+def get_diff_data():
+    temp_data['original'] = temp_data['original'].decode('utf-8')
+    temp_data['translation'] = temp_data['translation'].decode('utf-8')
+    return jsonify(temp_data)
+
+# Handle Download
+@app.route('/download')
+def download():
+    return temp_data['translation']
+
+# Handle Upload
 @socketio.on('upload')
 def handle_upload(data):
-    # Empfange Daten vom Client
 
-    file_name = data['fileName']
-    file_data = data['fileData']
-    src_lang = data['src']
-    dest_lang = data['dest']
+    # Speichert die empfangenen Daten
+    global temp_data
+    temp_data = {
+        'fileName': data['fileName'],
+        'fileType': data['fileType'],
+        'original': data['fileData'],
+        'srcLang': data['srcLang'],
+        'destLang': data['destLang']
+    }
     
-    # Speichere die hochgeladene Datei auf dem Server
-    file_path = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
-    with open(file_path, 'wb') as file:
-        file.write(file_data)
+    # Unterschiedliche Logik je nach Dateityp
+    if temp_data['fileType'] == "XML":
+        # TODO: Verbessere die XML Übersetzungslogik
+        try:
+            temp_data['translation'] = translate_xml(app = app, url=app.config['LT_URL'] + "/translate", temp_data=temp_data)
+            socketio.emit('translation_progress', {'finished': True, 'error': False})
 
-    # Extraktion der hochgeladenen MBZ Datei
-    if os.path.isfile(file_path):
-        extract_mbz(file_path, app.config['EXTRACTION_FOLDER'])
+        except Exception as e:
+            socketio.emit('error', f'XML Translation Error; {temp_data['translation']}')
+
+    elif temp_data['fileType'] == "MBZ":
+        socketio.emit('log', {'message': f'MBZ-Dateien werden noch nicht unterstützt.'})
+        # TODO: Implementiere die MBZ Entpack- und Übersetzungslogik
+    else:
+        socketio.emit('error', f'Unknown File Type: {temp_data['fileType']}')
+
+
+
+    # # Extraktion der hochgeladenen MBZ Datei
+    # if os.path.isfile(file_path):
+    #     extract_mbz(file_path, app.config['EXTRACTION_FOLDER'])
  
+    # # Übersetzung der extrahierten XML Dateien
+    # if len(app.config["EXTRACTION_FOLDER"]) > 0:
+    #     translate_mbz(app, src_lang, dest_lang)
 
-    # if len(EXTRACTION_FOLDER) > 0:
-    #     url = LT_URL + "translate"
-    #     for (root, dirs, files) in os.walk(EXTRACTION_FOLDER):
-    #         for file in files:
-    #             if file.endswith('.xml'):
-    #                 input_path = os.path.join(root, file)
-    #                 output_path = os.path.join(TRANSLATION_FOLDER, os.path.relpath(input_path, EXTRACTION_FOLDER))
-    #                 translate_xml_file(url, input_path, output_path, src_lang, dest_lang)
 
 # @socketio.on_error_default
 # def default_error_handler(e):
 #     print(f"Error: {e}")
 #     raise Exception
-
-# def translate_text(url: str, text: str, source_lang: str, target_lang: str) -> str:
-#     payload = {
-#         "q": text,
-#         "source": source_lang,
-#         "target": target_lang,
-#         "format": "html"
-#     }
-
-#     try:
-#         response = requests.post(url, data=payload)
-#         response.raise_for_status()
-#         return response.json()["translatedText"]
-#     except Exception as e:
-#         print(f"Translation error: {e}")
-#         return
-
-# def translate_xml_element(url: str, element: ET._Element, source_lang: str, target_lang: str):
-#     try:
-#         if element.text and element.text.strip():
-#             if not "<script" in element.text and not "</script>" in element.text:
-#                 element.text = translate_text(url=url, text=element.text, source_lang=source_lang, target_lang=target_lang)
-#         for child in element:
-#             translate_xml_element(element=child, source_lang=source_lang, target_lang=target_lang)
-#     except Exception as e:
-#         print(f"Error translating XML element: {e}")
-
-# def translate_xml_file(url: str, input_path: str, output_path: str, source_lang: str, target_lang: str):
-#     try:
-#         # Parse XML
-#         parser = ET.XMLParser(remove_blank_text=True)
-#         tree: ET._ElementTree = ET.parse(input_path, parser)
-#         root = tree.getroot()
-
-#         # Translate
-#         translate_xml_element(url=url, element=root, source_lang=source_lang, target_lang=target_lang)
-
-#         # Save with XML declaration
-#         os.makedirs(os.path.dirname(output_path), exist_ok=True)
-#         with open(output_path, "wb") as file:
-#             file.write(ET.tostring(root, encoding="utf-8", xml_declaration=True, pretty_print=True))
-#         print(f"Translated XML file saved to {output_path}")
-
-#     except ET.XMLSyntaxError as e:
-#         print(f"XML syntax error: {e}")
-#     except Exception as e:
-#         print(f"Error processing XML file: {e}")
 
 
 if __name__ == '__main__':

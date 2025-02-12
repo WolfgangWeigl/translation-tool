@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main %}
+{% with original=original, translated=translated %}
+
+<div id="editor" style="height: 90vh; width: 100%;"></div>
+
+<script src="{{ url_for('static', filename='js/editor.js') }}"></script>
+
+{% endwith %}
+{% endblock %}

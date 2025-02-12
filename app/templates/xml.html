@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<!-- Form -->
+<div class='container p-3 custom-form bg-light border rounded shadow-sm'>
+  <h2 class='text-center h2 user-select-none'>Translate your STACK question or STACK question collection</h2>
+  <div class='text-center text-muted user-select-none'>Upload your XML file, specify the original language, and choose the target language to translate it into.</div>
+  {% with type=type %}
+    {% include 'form.html' %}
+  {% endwith %}
+</div>
+
+<!-- Progress Bars (without Extraction Bar) -->
+{% with type=type %}
+  {% include 'progressbars.html' %}
+{% endwith %}
+
+<!-- JS Code -->
+<script data-langs='{{ langs | tojson }}' src="{{ url_for('static', filename='js/form.js') }}"></script>
+<script data-type='{{ type }}' src="{{ url_for('static', filename='js/socket.js') }}"></script>
+
+{% endblock %}
