@@ -38,13 +38,11 @@
     <small class='me-4 text-muted user-select-none'>Translation type:</small>
     <div>
       <div class='form-check'>
-        <input class='form-check-input' type='radio' name='translationType' id='singlelang' value='single' required
-          checked>
+        <input class='form-check-input' type='radio' name='translationType' id='singlelang' value='single' required checked>
         <label class='form-check-label user-select-none' for='singlelang'>One Language</label>
       </div>
       <div class='form-check'>
-        <input class='form-check-input' type='radio' name='translationType' id='multilang' value='multi' required
-          disabled>
+        <input class='form-check-input' type='radio' name='translationType' id='multilang' value='multiple' required>
         <label class='form-check-label user-select-none' for='multilang'>Multiple Languages</label>
       </div>
     </div>
@@ -55,15 +53,17 @@
   <div class="container d-flex justify-content-center">
     <!-- Submit Button -->
     <div class='text-center m-1'>
-      <button id='translateBtn' type='button' class='btn btn-outline-primary'>
+      <button id='translateBtn' type='submit' class='btn btn-outline-primary'>
         <i class='bi bi-translate me-2'></i>Translate
       </button>
     </div>
     <!-- Editor Button -->
     <div class='text-center m-1' hidden>
-      <button id='editorBtn' type='button' class='btn btn-outline-primary'>
-        <i class='bi bi-pencil-square me-2'></i>Editor
-      </button>
+      <a href="/editor">
+        <button id='editorBtn' type='button' class='btn btn-outline-primary'>
+          <i class='bi bi-pencil-square me-2'></i>Editor
+        </button>
+      </a>
     </div>
     <!-- Download Button -->
     <div class='text-center m-1' hidden>
