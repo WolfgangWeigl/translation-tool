@@ -63,10 +63,13 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="container d-flex flex-grow-1 flex-column justify-content-center align-items-center">
+    <main class="container-fluid d-flex flex-grow-1 flex-column justify-content-center align-items-center">
         {% block main %}
         {% endblock %}
     </main>
+
+    {% block footer %}
+    {% endblock %}
 
 </body>
 
