@@ -1,6 +1,7 @@
 services:
   libretranslate:
     container_name: libretranslate
+    image: translation-tool-prod-libretranslate
     build: 
       context: ./libretranslate
       dockerfile: Dockerfile
@@ -8,19 +9,23 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - LT_LOAD_ONLY=en,de
+      # - LT_LOAD_ONLY=en,de
       - LT_DISABLE_WEB_UI=false
+      - LT_DEBUG=false
     volumes:
       - libretranslate-models:/home/libretranslate/.local:rw
     healthcheck:
-      test: curl --silent --fail  http://localhost:5000/languages
+      test: curl -s -f  http://libretranslate:5000/languages || exit 1
       interval: 10s  
       retries: 999      
       start_period: 10s 
       timeout: 5s  
+    networks:
+      - translation-tool-prod
     
   flask:
     container_name: flask
+    image: translation-tool-prod-flask
     build:
       context: ./app
       dockerfile: Dockerfile.prod
@@ -32,8 +37,12 @@ services:
     depends_on:
       libretranslate:
         condition: service_healthy
+    networks:
+      - translation-tool-prod
 
 volumes:
   libretranslate-models:
     name: libretranslate-models
 
+networks:
+  translation-tool-prod:

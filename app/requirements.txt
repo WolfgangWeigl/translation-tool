@@ -4,3 +4,4 @@ libretranslatepy
 requests
 lxml
 gunicorn
+eventlet
