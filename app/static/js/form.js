@@ -27,13 +27,27 @@ document.getElementById('originalLanguage').addEventListener('change', function 
     const language = langs.find(l => l.code === srcLang);
   
     if (language) {
-      language.targets.forEach(target => {
-        if (target !== srcLang) {
+      const sortedTargets = language.targets
+      .filter(target => target !== srcLang) 
+      .map(target => ({
+          code: target,
+          name: langs.find(l => l.code === target).name
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name)); 
+
+      sortedTargets.forEach(target => {
           const option = document.createElement('option');
-          option.value = target;
-          option.textContent = langs.find(l => l.code === target).name;
+          option.value = target.code;
+          option.textContent = target.name;
           destLang.appendChild(option);
-        }
       });
     }
   });
+
+  // Set default value after a refresh
+  window.onload = function() {
+    // document.getElementById('originalLanguage').value = ''; 
+    // document.getElementById('targetLanguage').value = ''; 
+    document.getElementById('upload-form').reset();
+  }
+  
