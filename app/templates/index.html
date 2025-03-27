@@ -5,16 +5,16 @@
   <h2 class="text-center h2">What do you want to translate?</h2>
   <div class="container mt-5 d-flex justify-content-evenly flex-wrap">
     <!-- MBZ -->
-    <a type="button" class="btn btn-outline-primary w-25 disabled" href="/mbz" aria-disabled="true">
+    <a type="button" class="btn btn-outline-secondary position-relative w-25 disabled" href="/mbz" aria-disabled="true">
       <h5>MBZ File</h5>
-      <p>(Not yet supported)</p>
+      <h4><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">Not yet supported</span></h4>
       <img class="mb-3" src='{{ url_for("static", filename="images/mbz-file-icon.svg") }}' alt='MBZ-File' width='50' height='50'>
       <p>Here you can have an entire Moodle course translated automatically. STACK questions and H5P elements are included in the translation.</p>
     </a>
     <!-- XML -->
-    <a type="button" class="btn btn-outline-primary w-25" href="/xml">
+    <a type="button" class="btn btn-outline-primary position-relative w-25" href="/xml">
       <h5>XML File</h5>
-      <p>(Not yet supported)</p>
+      <h4><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">New</span></h4>
       <img class="mb-3" src='{{ url_for("static", filename="images/xml-file-icon.svg") }}' alt='XML-File' width='50' height='50'>
       <p>Here you can automatically translate a single STACK question or a stack question collection.</p>
     </a>
