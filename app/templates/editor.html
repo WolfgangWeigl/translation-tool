@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 
 {% block main %}
-{% with original=original, translated=translated %}
-
-<div id="editor" style="height: 90vh; width: 100%;"></div>
+<div class="container-fluid" id="editor" style="height: 90vh;"></div>
 
 <script src="{{ url_for('static', filename='js/editor.js') }}"></script>
+{% endblock %}
 
-{% endwith %}
+{% block footer %}
+<footer class="footer fixed-bottom border-top bg-light p-2">
+    <div class="container text-center">
+        <!-- Editor resetten -->
+        <button id="resetBtn" type="button" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-clockwise me-2"></i>Reset
+        </button>
+        <!-- Änderungen downloaden -->
+        <a href="/download" download="translation.xml">
+            <button id='downloadBtn' type='button' class='btn btn-outline-primary'>
+                <i class='bi bi-download me-2'></i>Download
+            </button>
+        </a>
+    </div>
+</footer>
 {% endblock %}
