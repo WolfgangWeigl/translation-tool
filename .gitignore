@@ -23,6 +23,7 @@ venv/
 #######################
 .vscode/
 .idea/
+.devcontainer/
 
 # Test output and coverage
 ###########################
