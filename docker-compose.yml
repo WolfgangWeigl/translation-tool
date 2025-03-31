@@ -1,4 +1,4 @@
-# docker-compose.yml
+# docker-compose.yml for production
 name: translation-tool-prod
 
 services:
@@ -6,11 +6,11 @@ services:
     container_name: libretranslate
     build:
       context: .
-      dockerfile: docker/Dockerfile.lt  
+      dockerfile: docker/Dockerfile.lt
     image: translationtool/libretranslate
     restart: unless-stopped
     volumes:
-      - libretranslate-models:/home/libretranslate/.local:rw  
+      - libretranslate-models:/home/libretranslate/.local:rw  # Persist language models
     healthcheck:
       test: ["CMD-SHELL", "curl -s -f http://libretranslate:5000/languages || exit 1"]
       interval: 10s
@@ -23,19 +23,19 @@ services:
   flask:
     container_name: flask
     build:
-      context: .                    
-      dockerfile: docker/Dockerfile.prod  
+      context: .
+      dockerfile: docker/Dockerfile.prod
     image: translationtool/flask
     ports:
-      - "80:5000"                     # Extern Port 80, intern Port 80 (entspricht deinem CMD in Dockerfile.prod)
+      - "80:5000"  # Expose app on external port 80
     env_file:
-      - env/prod.env                
+      - env/prod.env
     environment:
-      - FLASK_APP=app               # Falls benötigt als Fallback, wird aber meist über .env gesetzt
+      - FLASK_APP=app
       - FLASK_ENV=production
     depends_on:
       libretranslate:
-        condition: service_healthy  
+        condition: service_healthy
     networks:
       - translationtool
 
