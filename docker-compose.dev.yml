@@ -1,22 +1,36 @@
-# Docker Compose for development
-
+# docker-compose.dev.yml
 name: translation-tool-dev
 
 services:
   libretranslate:
     container_name: libretranslate-dev
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile.lt
+    ports:
+      - "5001:5000"
+    volumes:
+      - libretranslate-models:/home/libretranslate/.local:rw
     
   flask:
     container_name: flask-dev
     build: 
-      context: ./app
-      dockerfile: Dockerfile.dev
+      context: .
+      dockerfile: docker/Dockerfile.dev
     volumes:
       - ./app:/workspace/app:rw # code mounted into container
       - ./tests:/workspace/tests:rw # tests mounted into container
       - ./.vscode:/workspace/.vscode:rw # vscode mounted into container
       - ./.devcontainer:/workspace/.devcontainer:rw # devcontainer mounted into container
+    env_file:
+      - env/dev.env
     environment:
-      - FLASK_ENV = development
+      - FLASK_ENV=development
+    ports:
+      - "5000:5000"
     depends_on:
       - libretranslate
+
+volumes:
+  libretranslate-models:
+    name: libretranslate-models

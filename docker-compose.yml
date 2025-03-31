@@ -1,48 +1,47 @@
+# docker-compose.yml
+name: translation-tool-prod
+
 services:
   libretranslate:
     container_name: libretranslate
-    image: translation-tool-prod-libretranslate
-    build: 
-      context: ./libretranslate
-      dockerfile: Dockerfile
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.lt  
+    image: translationtool/libretranslate
     restart: unless-stopped
-    ports:
-      - "5000:5000"
-    environment:
-      # - LT_LOAD_ONLY=en,de
-      - LT_DISABLE_WEB_UI=false
-      - LT_DEBUG=false
     volumes:
-      - libretranslate-models:/home/libretranslate/.local:rw
+      - libretranslate-models:/home/libretranslate/.local:rw  
     healthcheck:
-      test: curl -s -f  http://libretranslate:5000/languages || exit 1
-      interval: 10s  
-      retries: 999      
-      start_period: 10s 
-      timeout: 5s  
+      test: ["CMD-SHELL", "curl -s -f http://libretranslate:5000/languages || exit 1"]
+      interval: 10s
+      retries: 999
+      start_period: 10s
+      timeout: 5s
     networks:
-      - translation-tool-prod
-    
+      - translationtool
+
   flask:
     container_name: flask
-    image: translation-tool-prod-flask
     build:
-      context: ./app
-      dockerfile: Dockerfile.prod
+      context: .                    
+      dockerfile: docker/Dockerfile.prod  
+    image: translationtool/flask
     ports:
-      - "80:80"
+      - "80:5000"                     # Extern Port 80, intern Port 80 (entspricht deinem CMD in Dockerfile.prod)
+    env_file:
+      - env/prod.env                
     environment:
-      - FLASK_APP=app
+      - FLASK_APP=app               # Falls benötigt als Fallback, wird aber meist über .env gesetzt
       - FLASK_ENV=production
     depends_on:
       libretranslate:
-        condition: service_healthy
+        condition: service_healthy  
     networks:
-      - translation-tool-prod
+      - translationtool
 
 volumes:
   libretranslate-models:
     name: libretranslate-models
 
 networks:
-  translation-tool-prod:
+  translationtool:
