@@ -3,7 +3,7 @@ import secrets
 import requests
 
 from extractor import extract_mbz
-from translator import translate_mbz
+from mbz_translator import translate_mbz
 from xml_translator import translate_xml
 
 from libretranslatepy import LibreTranslateAPI
@@ -13,18 +13,32 @@ from flask_socketio import SocketIO
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = secrets.token_urlsafe(16)
-app.config['UPLOAD_FOLDER'] = os.getenv('UPLOAD_FOLDER')
-app.config['EXTRACTION_FOLDER'] = os.getenv('EXTRACTION_FOLDER')
-app.config['TRANSLATION_FOLDER'] = os.getenv('TRANSLATION_FOLDER')
-app.config['MAX_HTTP_BUFFER_SIZE'] = int(os.getenv('MAX_HTTP_BUFFER_SIZE'))
-app.config['LT_URL'] = os.getenv('LT_URL')
+# Konfiguration
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', secrets.token_urlsafe(16))
+app.config.update({
+    'ENV': os.getenv('FLASK_ENV', 'development'),
+    'DEBUG': os.getenv('FLASK_DEBUG', 'false').lower() in ('true', '1', 'yes'),
+    'TESTING': os.getenv('FLASK_TESTING', 'false').lower() in ('true', '1', 'yes'),
+    'HOST': os.getenv('FLASK_RUN_HOST', '0.0.0.0'),
+    'PORT': int(os.getenv('FLASK_RUN_PORT', '5000')),
+    'UPLOAD_FOLDER': os.getenv('UPLOAD_FOLDER', '/temp/uploads'),
+    'EXTRACTION_FOLDER': os.getenv('EXTRACTION_FOLDER', '/temp/extractedFiles'),
+    'TRANSLATION_FOLDER': os.getenv('TRANSLATION_FOLDER', '/temp/translatedFiles'),
+    'MAX_HTTP_BUFFER_SIZE': int(os.getenv('MAX_HTTP_BUFFER_SIZE', '100000000')),
+    'LT_URL': os.getenv('LT_URL', 'http://libretranslate:5000')
+})
 
 # Flask-SocketIO für WebSocket-Kommunikation, hier mit erhöhter Puffergröße
 socketio = SocketIO(app, 
                     max_http_buffer_size=int(app.config['MAX_HTTP_BUFFER_SIZE']), 
                     logger=True, 
-                    enginio_logger=True)
+                    enginio_logger=True,
+                    async_mode='eventlet')
+
+# Erstelle die Upload-, Extraktions- und Übersetzungsordner (wichtig für MBZ)
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+os.makedirs(app.config['EXTRACTION_FOLDER'], exist_ok=True)
+os.makedirs(app.config['TRANSLATION_FOLDER'], exist_ok=True)
 
 # Speichert temporär die Form-Daten
 temp_data = {}
@@ -49,25 +63,33 @@ def editor():
 @app.route('/mbz')
 def mbz():
     lt = LibreTranslateAPI(app.config['LT_URL'])
-    return render_template('mbz.html', type="MBZ",langs=lt.languages())
+    langs = lt.languages()
+    return render_template('mbz.html', type="MBZ", langs=sorted(langs, key=lambda x: x["name"]))
 
 # XML Form Seite
 @app.route('/xml')
 def xml():
     lt = LibreTranslateAPI(app.config['LT_URL'])
-    return render_template('xml.html', type="XML", langs=lt.languages())
+    langs = lt.languages()
+    return render_template('xml.html', type="XML", langs=sorted(langs, key=lambda x: x["name"]))
 
 # Handle Editor Content
 @app.route('/get_diff_data')
 def get_diff_data():
-    temp_data['original'] = temp_data['original'].decode('utf-8')
-    temp_data['translation'] = temp_data['translation'].decode('utf-8')
+    if isinstance(temp_data['original'], bytes):
+        temp_data['original'] = temp_data['original'].decode('utf-8')
+    
+    if isinstance(temp_data['translation'], bytes):
+        temp_data['translation'] = temp_data['translation'].decode('utf-8')
     return jsonify(temp_data)
 
 # Handle Download
 @app.route('/download')
 def download():
-    return temp_data['translation']
+    if temp_data['transType'] == 'single':
+        return temp_data['translation']
+    elif temp_data['transType'] == 'multiple':
+        return temp_data['translation']
 
 # Handle Upload
 @socketio.on('upload')
@@ -80,18 +102,22 @@ def handle_upload(data):
         'fileType': data['fileType'],
         'original': data['fileData'],
         'srcLang': data['srcLang'],
-        'destLang': data['destLang']
+        'destLang': data['destLang'],
+        'transType': data['transType']
     }
+
+    # Sende Upload abgeschlossen Nachricht
+    socketio.emit('upload_progress', {'progress': 100, 'finished': True})
     
     # Unterschiedliche Logik je nach Dateityp
     if temp_data['fileType'] == "XML":
         # TODO: Verbessere die XML Übersetzungslogik
         try:
-            temp_data['translation'] = translate_xml(app = app, url=app.config['LT_URL'] + "/translate", temp_data=temp_data)
-            socketio.emit('translation_progress', {'finished': True, 'error': False})
+            temp_data['translation'], progress = translate_xml(socketio=socketio, app=app, url=app.config['LT_URL'] + "/translate", temp_data=temp_data)
+            socketio.emit('translation_progress', {'progress': progress, 'finished': True})
 
         except Exception as e:
-            socketio.emit('error', f'XML Translation Error; {temp_data['translation']}')
+            socketio.emit('error', f'XML Translation Error; {e}')
 
     elif temp_data['fileType'] == "MBZ":
         socketio.emit('log', {'message': f'MBZ-Dateien werden noch nicht unterstützt.'})
@@ -117,10 +143,5 @@ def handle_upload(data):
 
 
 if __name__ == '__main__':
-
-    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-    os.makedirs(app.config['EXTRACTION_FOLDER'], exist_ok=True)
-    os.makedirs(app.config['TRANSLATION_FOLDER'], exist_ok=True)
-
-    # Starte die Flask-SocketIO-Anwendung
-    socketio.run(app=app, host='0.0.0.0', port=80, allow_unsafe_werkzeug=True)
+    app.logger.info('Starting in development mode...')
+    socketio.run(app=app, host='0.0.0.0', port=5000, allow_unsafe_werkzeug=True)
