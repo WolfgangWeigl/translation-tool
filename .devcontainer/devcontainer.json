@@ -1,23 +1,23 @@
 {
-    "name": "Flask Devcontainer",
-    "dockerComposeFile": [
-        "../docker-compose.yml", // Base Compose File
-        "docker-compose.dev.yml" // Development Override
-    ],
-    "service": "flask",
-    "workspaceFolder": "/workspace",
-    "postCreateCommand": "cd tests/smoke_tests && pytest", // Start Smoke Tests on Container Startup
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-python.python",
-                "ms-python.isort",
-                "ms-azuretools.vscode-docker",
-                "littlefoxteam.vscode-python-test-adapter",
-                "samuelcolvin.jinjahtml",
-                "codeium.codeium",
-                "ms-toolsai.jupyter"
-            ]
-        }
+  "name": "Flask Devcontainer",
+  "dockerComposeFile": [
+    "../docker-compose.yml",          // Base Compose file (prod fallback)
+    "../docker-compose.dev.yml"       // Dev-specific override
+  ],
+  "service": "flask",                 // Main service for development
+  "workspaceFolder": "/workspace",    // Working directory in the container
+  "postCreateCommand": "cd tests/smoke_tests && pytest",  // Run smoke tests after container setup
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.isort",
+        "ms-azuretools.vscode-docker",
+        "littlefoxteam.vscode-python-test-adapter",
+        "samuelcolvin.jinjahtml",
+        "codeium.codeium",
+        "ms-toolsai.jupyter"
+      ]
     }
+  }
 }
