@@ -8,7 +8,7 @@ const fileLabel = document.querySelector('label.form-control');
 const fileInput = document.getElementById('fileinput');
 const originalLanguage = document.getElementById('originalLanguage');
 const targetLanguage = document.getElementById('targetLanguage');
-const translationType = document.querySelector('input[name="translationType"]:checked');
+const radios = document.querySelectorAll('input[name="translationType"]');
 
 const translateBtn = document.getElementById('translateBtn');
 const editorBtn = document.getElementById('editorBtn');
@@ -48,7 +48,7 @@ form.addEventListener('submit', function (event) {
       fileData: fileInput.files[0],
       srcLang: originalLanguage.value,
       destLang: targetLanguage.value,
-      transType: translationType.value
+      transType: document.querySelector('input[name="translationType"]:checked')?.value
     });
   } else {
     form.reportValidity();
