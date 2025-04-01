@@ -1,3 +1,4 @@
+import os
 import tarfile
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from flask_socketio import emit
@@ -12,12 +13,12 @@ def extract_mbz(file, output_dir):
         members = tar.getmembers()
 
     total_files = len(members)
-    n_workers = 8  
+    n_workers = os.cpu_count()
     chunksize = max(1, round(total_files / n_workers))
 
     extracted_files = 0
 
-    with ProcessPoolExecutor(n_workers) as executor:
+    with ProcessPoolExecutor(max_workers=n_workers) as executor:
         
         futures = []
         for i in range(0, total_files, chunksize):
