@@ -57,12 +57,12 @@ A simple and powerful Flask-based app for translating XML and MBZ files via Libr
 
 ### Built With
 
-* [![Docker][Docker]][Docker-url]
-* [![LibreTranslate][LibreTranslate]][LibreTranslate-url]
-* [![FLASK][FLASK]][Flask-url]
-* [![Flask-SocketIO][Flask-SocketIO]][Flask-SocketIO-url]
-* [![eventlet][eventlet]][eventlet-url]
-* [![Bootstrap][Bootstrap]][Bootstrap-url]
+[![Docker][Docker]][Docker-url]
+[![LibreTranslate][LibreTranslate]][LibreTranslate-url]
+[![FLASK][FLASK]][Flask-url]
+[![Flask-SocketIO][Flask-SocketIO]][Flask-SocketIO-url]
+[![eventlet][eventlet]][eventlet-url]
+[![Bootstrap][Bootstrap]][Bootstrap-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -149,7 +149,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Wolfgang Weigl – [LinkedIn](https://linkedin.com/in/wolfgang-weigl-933885236/)  
-Project Link: [https://git.oth-aw.de/b566/translation-tool](https://git.oth-aw.de/b566/translation-tool)
+Project Website: [https://www.oth-aw.de/forschung/forschungsprofil/forschungs-und-entwicklungsprojekte/ideal/](Projekt IdeaL | OTH Amberg-Weiden)  
+Repository: [https://git.oth-aw.de/b566/translation-tool](https://git.oth-aw.de/b566/translation-tool)
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -173,7 +175,7 @@ Project Link: [https://git.oth-aw.de/b566/translation-tool](https://git.oth-aw.d
 [LibreTranslate-url]: https://github.com/LibreTranslate/LibreTranslate
 [FLASK]: https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white
 [Flask-url]: https://flask.palletsprojects.com/
-[Flask-SocketIO]:https://img.shields.io/badge/Socket.io-4.1.3-010101?style=for-the-badge&logo=Socket.io&logoColor=white
+[Flask-SocketIO]: https://img.shields.io/badge/Socket.io-4.1.3-010101?style=for-the-badge&logo=Socket.io&logoColor=white
 [Flask-SocketIO-url]: https://flask-socketio.readthedocs.io/
 [eventlet]: https://img.shields.io/badge/eventlet-555?style=for-the-badge
 [eventlet-url]: https://pypi.org/project/eventlet/
