@@ -1,31 +1,20 @@
 <a id="readme-top"></a>
 
 <!-- PROJECT SHIELDS -->
-<!-- Contributors -->
 <!-- [![Contributors][contributors-shield]][contributors-url] -->
-
-<!-- Forks -->
 <!-- [![Forks][forks-shield]][forks-url] -->
-
-<!-- Stars -->
 <!-- [![Stargazers][stars-shield]][stars-url] -->
-
-<!-- Issues -->
 <!-- [![Issues][issues-shield]][issues-url] -->
-
-<!-- License -->
 [![License][license-shield]][license-url]
-
-<!-- LinkedIn -->
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 <br />
 <div align="center">
 <!-- PROJECT LOGO -->
-  <!-- <a href="https://git.oth-aw.de/b566/translation-tool">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a> -->
+  <a href="https://www.oth-aw.de/forschung/forschungsprofil/forschungs-und-entwicklungsprojekte/ideal/">
+    <img src="app/static/images/ideal-logo.png" alt="Logo" width="80" height="80">
+  </a>
 
 <h3 align="center">Translation Tool</h3>
 
@@ -172,7 +161,7 @@ Project Link: [https://git.oth-aw.de/b566/translation-tool](https://git.oth-aw.d
 <!-- [stars-url]: https://git.oth-aw.de/b566/translation-tool/stargazers -->
 <!-- [issues-shield]: https://img.shields.io/github/issues/b566/translation-tool.svg?style=for-the-badge -->
 <!-- [issues-url]: https://git.oth-aw.de/b566/translation-tool/issues -->
-[license-shield]: https://img.shields.io/badge/license-MIT-blue
+[license-shield]: https://img.shields.io/badge/license-MIT-blue?style=for-the-badge
 [license-url]: https://git.oth-aw.de/b566/translation-tool/blob/main/LICENSE
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&colorB=0a66c2
 [linkedin-url]: https://linkedin.com/in/wolfgang-weigl-933885236/
