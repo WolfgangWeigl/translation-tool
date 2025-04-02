@@ -11,7 +11,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/your-username/translation-tool">
+  <a href="https://git.oth-aw.de/b566/translation-tool">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -20,14 +20,14 @@
   <p align="center">
     A web-based tool for translating XML and MBZ files, optimized for Moodle content.
     <br />
-    <a href="https://github.com/your-username/translation-tool"><strong>Explore the docs »</strong></a>
+    <a href="https://git.oth-aw.de/b566/translation-tool"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/your-username/translation-tool">View Demo</a>
+    <a href="https://git.oth-aw.de/b566/translation-tool">View Demo</a>
     ·
-    <a href="https://github.com/your-username/translation-tool/issues/new?labels=bug">Report Bug</a>
+    <a href="https://git.oth-aw.de/b566/translation-tool/issues/new?labels=bug">Report Bug</a>
     ·
-    <a href="https://github.com/your-username/translation-tool/issues/new?labels=enhancement">Request Feature</a>
+    <a href="https://git.oth-aw.de/b566/translation-tool/issues/new?labels=enhancement">Request Feature</a>
   </p>
 </div>
 
@@ -109,8 +109,8 @@ Once the containers are running:
 
 ## Roadmap
 
-- [X] Upload progress bar
 - [ ] Drag & Drop upload UI
+- [ ] Upload progress bar
 - [ ] Persistent translation history
 - [ ] User authentication
 - [ ] Glossary / translation memory
@@ -136,20 +136,20 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Your Name – [@your_handle](https://twitter.com/your_handle) – your.email@example.com  
-Project Link: [https://github.com/your-username/translation-tool](https://github.com/your-username/translation-tool)
+Project Link: [https://git.oth-aw.de/b566/translation-tool](https://git.oth-aw.de/b566/translation-tool)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors/your-username/translation-tool.svg?style=for-the-badge
-[contributors-url]: https://github.com/your-username/translation-tool/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/your-username/translation-tool.svg?style=for-the-badge
-[forks-url]: https://github.com/your-username/translation-tool/network/members
-[stars-shield]: https://img.shields.io/github/stars/your-username/translation-tool.svg?style=for-the-badge
-[stars-url]: https://github.com/your-username/translation-tool/stargazers
-[issues-shield]: https://img.shields.io/github/issues/your-username/translation-tool.svg?style=for-the-badge
-[issues-url]: https://github.com/your-username/translation-tool/issues
-[license-shield]: https://img.shields.io/github/license/your-username/translation-tool.svg?style=for-the-badge
-[license-url]: https://github.com/your-username/translation-tool/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/b566/translation-tool.svg?style=for-the-badge
+[contributors-url]: https://git.oth-aw.de/b566/translation-tool/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/b566/translation-tool.svg?style=for-the-badge
+[forks-url]: https://git.oth-aw.de/b566/translation-tool/network/members
+[stars-shield]: https://img.shields.io/github/stars/b566/translation-tool.svg?style=for-the-badge
+[stars-url]: https://git.oth-aw.de/b566/translation-tool/stargazers
+[issues-shield]: https://img.shields.io/github/issues/b566/translation-tool.svg?style=for-the-badge
+[issues-url]: https://git.oth-aw.de/b566/translation-tool/issues
+[license-shield]: https://img.shields.io/github/license/b566/translation-tool.svg?style=for-the-badge
+[license-url]: https://git.oth-aw.de/b566/translation-tool/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
