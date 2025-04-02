@@ -1,19 +1,31 @@
 <a id="readme-top"></a>
 
 <!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
+<!-- Contributors -->
+<!-- [![Contributors][contributors-shield]][contributors-url] -->
+
+<!-- Forks -->
+<!-- [![Forks][forks-shield]][forks-url] -->
+
+<!-- Stars -->
+<!-- [![Stargazers][stars-shield]][stars-url] -->
+
+<!-- Issues -->
+<!-- [![Issues][issues-shield]][issues-url] -->
+
+<!-- License -->
 [![License][license-shield]][license-url]
+
+<!-- LinkedIn -->
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-<!-- PROJECT LOGO -->
+
 <br />
 <div align="center">
-  <a href="https://git.oth-aw.de/b566/translation-tool">
+<!-- PROJECT LOGO -->
+  <!-- <a href="https://git.oth-aw.de/b566/translation-tool">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  </a> -->
 
 <h3 align="center">Translation Tool</h3>
 
@@ -54,11 +66,12 @@ A simple and powerful Flask-based app for translating XML and MBZ files via Libr
 
 ## Built With
 
+* [Docker](https://www.docker.com/)
+* [LibreTranslate](https://github.com/LibreTranslate/LibreTranslate)
 * [Flask](https://flask.palletsprojects.com/)
 * [Flask-SocketIO](https://flask-socketio.readthedocs.io/)
-* [LibreTranslatePy](https://pypi.org/project/libretranslatepy/)
-* [Docker](https://www.docker.com/)
 * [eventlet](https://pypi.org/project/eventlet/)
+* [Bootstrap](https://getbootstrap.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -72,7 +85,14 @@ A simple and powerful Flask-based app for translating XML and MBZ files via Libr
 
 ### Installation
 
-Clone the repository and start the container:
+Clone the repository:
+
+```bash
+git clone https://git.oth-aw.de/b566/translation-tool
+cd translation-tool
+```
+
+Then start the container:
 
 ```bash
 docker compose up --build -d
@@ -88,13 +108,15 @@ docker compose -f docker-compose.dev.yml up --build -d
 
 ### Environment Configuration
 
-Set language models via `env/prod.env` or `env/dev.env`:
+You can limit which language models LibreTranslate loads by setting the `LT_LOAD_ONLY` variable in `env/prod.env` or `env/dev.env`:
 
 ```env
 LT_LOAD_ONLY=de,en
 ```
 
-If `LT_LOAD_ONLY` is not set, all languages will be loaded, which slows down startup significantly.
+> ⚠️ If you do **not** set `LT_LOAD_ONLY`, **all models will be loaded**.  
+> This slows down the **very first container startup after a fresh build**, as all models are downloaded and initialized.  
+> **After the first startup, the models are cached and subsequent starts are much faster.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -109,8 +131,8 @@ Once the containers are running:
 
 ## Roadmap
 
+- [X] Upload progress bar
 - [ ] Drag & Drop upload UI
-- [ ] Upload progress bar
 - [ ] Persistent translation history
 - [ ] User authentication
 - [ ] Glossary / translation memory
@@ -135,21 +157,22 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name – [@your_handle](https://twitter.com/your_handle) – your.email@example.com  
+Wolfgang Weigl – [LinkedIn](https://linkedin.com/in/wolfgang-weigl-933885236/)  
 Project Link: [https://git.oth-aw.de/b566/translation-tool](https://git.oth-aw.de/b566/translation-tool)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors/b566/translation-tool.svg?style=for-the-badge
-[contributors-url]: https://git.oth-aw.de/b566/translation-tool/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/b566/translation-tool.svg?style=for-the-badge
-[forks-url]: https://git.oth-aw.de/b566/translation-tool/network/members
-[stars-shield]: https://img.shields.io/github/stars/b566/translation-tool.svg?style=for-the-badge
-[stars-url]: https://git.oth-aw.de/b566/translation-tool/stargazers
-[issues-shield]: https://img.shields.io/github/issues/b566/translation-tool.svg?style=for-the-badge
-[issues-url]: https://git.oth-aw.de/b566/translation-tool/issues
-[license-shield]: https://img.shields.io/github/license/b566/translation-tool.svg?style=for-the-badge
+<!-- [contributors-shield]: https://img.shields.io/github/contributors/b566/translation-tool.svg?style=for-the-badge -->
+<!-- [contributors-url]: https://git.oth-aw.de/b566/translation-tool/graphs/contributors -->
+<!-- [forks-shield]: https://img.shields.io/github/forks/b566/translation-tool.svg?style=for-the-badge -->
+<!-- [forks-url]: https://git.oth-aw.de/b566/translation-tool/network/members -->
+<!-- [stars-shield]: https://img.shields.io/github/stars/b566/translation-tool.svg?style=for-the-badge -->
+<!-- [stars-url]: https://git.oth-aw.de/b566/translation-tool/stargazers -->
+<!-- [issues-shield]: https://img.shields.io/github/issues/b566/translation-tool.svg?style=for-the-badge -->
+<!-- [issues-url]: https://git.oth-aw.de/b566/translation-tool/issues -->
+[license-shield]: https://img.shields.io/badge/license-MIT-blue
 [license-url]: https://git.oth-aw.de/b566/translation-tool/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://linkedin.com/in/wolfgang-weigl-933885236/
