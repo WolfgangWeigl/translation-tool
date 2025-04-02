@@ -149,7 +149,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Wolfgang Weigl – [LinkedIn](https://linkedin.com/in/wolfgang-weigl-933885236/)  
-Project Website: [https://www.oth-aw.de/forschung/forschungsprofil/forschungs-und-entwicklungsprojekte/ideal/](Projekt IdeaL | OTH Amberg-Weiden)  
+Project Website: [Projekt IdeaL | OTH Amberg-Weiden](https://www.oth-aw.de/forschung/forschungsprofil/forschungs-und-entwicklungsprojekte/ideal/)
 Repository: [https://git.oth-aw.de/b566/translation-tool](https://git.oth-aw.de/b566/translation-tool)
 
 
