@@ -14,6 +14,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
         rel="stylesheet">
 
+    <!-- Custom CSS Styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+
     <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='images/favicon-2.ico') }}" type="image/x-icon">
 
@@ -41,8 +44,8 @@
     <nav class='navbar navbar-expand-lg bg-body-tertiary'>
         <div class='container-fluid'>
             <a class='navbar-brand user-select-none' href='/'>
-                <img src='{{ url_for("static", filename="images/navbar-icon-2.svg") }}' alt='Logo' width='30' height='30'
-                    class='d-inline-block align-text-top'>
+                <img src='{{ url_for("static", filename="images/navbar-icon-2.svg") }}' alt='Logo' width='30'
+                    height='30' class='d-inline-block align-text-top'>
                 IdeaL | Translation Tool
             </a>
 
@@ -53,8 +56,10 @@
 
             <div class='collapse navbar-collapse' id='navbarNavAltMarkup'>
                 <div class='navbar-nav'>
-                    <a class='nav-link active' aria-current='page' href='/'>Home</a>
-                    <a class='nav-link disabled' href='/documentation'>Documentation</a>
+                    <a class='nav-link {% if current_page == "home" %}active{% endif %}' aria-current='page'
+                        href='/'>Home</a>
+                    <a class='nav-link {% if current_page == "guide" %}active{% endif %}'
+                        href='{{ url_for("guide") }}'>Guide</a>
                     <a class='nav-link disabled' href='/about'>About</a>
                     <a class='nav-link disabled' aria-disabled='true'>Disabled</a>
                 </div>

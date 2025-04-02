@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container my-5">
+  <!-- Guide Title and Introduction -->
+  <h1 class="mb-3">How to Use the Translation Tool</h1>
+  <p class="text-muted">This guide provides a step-by-step explanation of the application's main workflow and features.
+  </p>
+
+  <hr class="my-4">
+
+  <!-- Accordion: Main Steps of the Workflow -->
+  <div class="accordion" id="translationGuide">
+
+    <!-- Step 1: Start on Home Page -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingStart">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStart"
+          aria-expanded="true">
+          <i class="bi bi-house-door me-2"></i> Step 1: Starting from the Home Page
+        </button>
+      </h2>
+      <div id="collapseStart" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+          Begin at the <strong>Home Page</strong>. Select either the <em>XML</em> or <em>MBZ</em> option to begin the
+          translation process.
+
+          <div class="text-center my-3">
+            <div class="zoom-hover" data-bs-toggle="modal" data-bs-target="#modalImageStep1">
+              <img src="{{ url_for('static', filename='images/guide-step-1.png') }}" class="img-thumbnail shadow-sm"
+                alt="Step 1 Screenshot" style="max-width: 200px; max-height: 200px; object-fit: cover;">
+              <div class="zoom-icon"><i class="bi bi-zoom-in"></i></div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="modalImageStep1" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content bg-transparent border-0 position-relative">
+                <button type="button"
+                  class="btn-close position-absolute top-0 end-0 m-3 bg-white p-2 rounded-circle shadow"
+                  data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body text-center p-0">
+                  <img src="{{ url_for('static', filename='images/guide-step-1.png') }}"
+                    class="img-fluid rounded shadow-lg" alt="Step 1 Large Screenshot">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Upload and Configure -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingUpload">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseUpload">
+          <i class="bi bi-upload me-2"></i> Step 2: Upload and Configure Translation
+        </button>
+      </h2>
+      <div id="collapseUpload" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <ul>
+            <li>Upload your <code>.xml</code> or <code>.mbz</code> file.</li>
+            <li>Select the <strong>source language</strong>.</li>
+            <li>Select the <strong>target language</strong>.</li>
+            <li>Choose the <strong>translation type</strong>:
+              <ul>
+                <li><em>Simple Translation</em>: Fully replaces the original content.</li>
+                <li><em>Merged Translation</em>: Adds translated content alongside original using language tags (e.g.,
+                  <code>[[lang code="en"]]</code>, <code>[[lang code="de"]]</code>).
+                </li>
+              </ul>
+            </li>
+            <li>Click the <strong>Translate</strong> button.</li>
+          </ul>
+
+          <div class="alert alert-info mt-3" role="alert">
+            <i class="bi bi-info-circle me-1"></i>
+            For STACK-based content, merged translation is usually the better choice.
+          </div>
+
+          <div class="text-center my-3">
+            <div class="zoom-hover" data-bs-toggle="modal" data-bs-target="#modalImageStep2">
+              <img src="{{ url_for('static', filename='images/guide-step-2.png') }}" class="img-thumbnail shadow-sm"
+                alt="Step 2 Screenshot" style="max-width: 200px; max-height: 200px; object-fit: cover;">
+              <div class="zoom-icon"><i class="bi bi-zoom-in"></i></div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="modalImageStep2" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content bg-transparent border-0 position-relative">
+                <button type="button"
+                  class="btn-close position-absolute top-0 end-0 m-3 bg-white p-2 rounded-circle shadow"
+                  data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body text-center p-0">
+                  <img src="{{ url_for('static', filename='images/guide-step-2.png') }}"
+                    class="img-fluid rounded shadow-lg" alt="Step 2 Large Screenshot">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Progress and Download -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingProgress">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseProgress">
+          <i class="bi bi-bar-chart-line me-2"></i> Step 3: Translation Progress and Download
+        </button>
+      </h2>
+      <div id="collapseProgress" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          The translation process will begin and a progress bar will indicate the current status. Once completed, you
+          can:
+          <ul>
+            <li>Click <strong>Download</strong> to save the translated file.</li>
+            <li>Or click <strong>Editor</strong> to open the result in the editor for review and changes.</li>
+          </ul>
+
+          <div class="text-center my-3">
+            <div class="zoom-hover" data-bs-toggle="modal" data-bs-target="#modalImageStep3">
+              <img src="{{ url_for('static', filename='images/guide-step-3.png') }}" class="img-thumbnail shadow-sm"
+                alt="Step 3 Screenshot" style="max-width: 200px; max-height: 200px; object-fit: cover;">
+              <div class="zoom-icon"><i class="bi bi-zoom-in"></i></div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="modalImageStep3" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content bg-transparent border-0 position-relative">
+                <button type="button"
+                  class="btn-close position-absolute top-0 end-0 m-3 bg-white p-2 rounded-circle shadow"
+                  data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body text-center p-0">
+                  <img src="{{ url_for('static', filename='images/guide-step-3.png') }}"
+                    class="img-fluid rounded shadow-lg" alt="Step 3 Large Screenshot">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Editor -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingEditor">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseEditor">
+          <i class="bi bi-pencil-square me-2"></i> Step 4: Using the Editor
+        </button>
+      </h2>
+      <div id="collapseEditor" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          The <strong>editor</strong> displays a side-by-side diff view with two panes:
+          <ul>
+            <li><strong>Left:</strong> Original content (read-only)</li>
+            <li><strong>Right:</strong> Translated content (editable)</li>
+          </ul>
+
+          <p>This structure is the same for both <em>Simple</em> and <em>Merged</em> translation modes. You can directly
+            edit the translated version before downloading.</p>
+
+          <div class="alert alert-secondary" role="alert">
+            <i class="bi bi-info-circle me-1"></i>
+            On download, your updated translation will be used and, if "Merged Translation" was selected, it will be
+            <strong>re-integrated with language blocks</strong> (e.g. <code>[[lang code="en"]]</code>,
+            <code>[[lang code="de"]]</code>) as
+            needed.
+          </div>
+
+          <div class="text-center my-3">
+            <div class="zoom-hover" data-bs-toggle="modal" data-bs-target="#modalImageStep4">
+              <img src="{{ url_for('static', filename='images/guide-step-4.png') }}" class="img-thumbnail shadow-sm"
+                alt="Step 4 Screenshot" style="max-width: 200px; max-height: 200px; object-fit: cover;">
+              <div class="zoom-icon"><i class="bi bi-zoom-in"></i></div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="modalImageStep4" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content bg-transparent border-0 position-relative">
+                <button type="button"
+                  class="btn-close position-absolute top-0 end-0 m-3 bg-white p-2 rounded-circle shadow"
+                  data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body text-center p-0">
+                  <img src="{{ url_for('static', filename='images/guide-step-4.png') }}"
+                    class="img-fluid rounded shadow-lg" alt="Step 4 Large Screenshot">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Troubleshooting Section -->
+  <div class="accordion my-5" id="accordionTroubleshooting">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTrouble">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseTrouble" aria-expanded="false">
+          Common Issues & Troubleshooting
+        </button>
+      </h2>
+      <div id="collapseTrouble" class="accordion-collapse collapse" aria-labelledby="headingTrouble"
+        data-bs-parent="#accordionTroubleshooting">
+        <div class="accordion-body">
+
+          <p class="text-muted">Here are common issues and how to resolve them effectively.</p>
+
+          <div class="alert alert-danger mb-4" role="alert">
+            <strong>Editor shows empty fields:</strong><br>
+            The uploaded file may be corrupted or not in a valid XML/MBZ format.
+          </div>
+
+          <div class="alert alert-warning mb-4" role="alert">
+            <strong>App freezes with large files:</strong><br>
+            When using a local translation server, performance issues may occur with large files (e.g., over 5 MB). Use
+            a more powerful server if possible.
+          </div>
+
+          <div class="row">
+            <div class="col-lg-10 col-xl-8">
+              <div class="mb-3">
+                <strong>Clicking "Translate" without uploading a file:</strong><br>
+                A popup appears prompting you to select a file before proceeding.
+              </div>
+
+              <div class="mb-3">
+                <strong>Missing source or target language:</strong><br>
+                A popup informs you that both language fields must be filled.
+              </div>
+
+              <div class="mb-3">
+                <strong>Translation does not start / progress bar stuck:</strong><br>
+                This indicates a backend issue. Please report the problem via the GitHub repository.
+              </div>
+
+              <div class="mb-3">
+                <strong>Download button is not available:</strong><br>
+                The translation process has not yet completed.
+              </div>
+
+              <div class="mb-3">
+                <strong>Downloaded file doesn't reflect editor changes:</strong><br>
+                Ensure that the correct source and target languages were selected. They affect the merge result.
+              </div>
+
+              <div class="mb-3">
+                <strong>Unusual characters in output:</strong><br>
+                Only UTF-8 encoded files are supported.
+              </div>
+
+              <div class="mb-3">
+                <strong>Missing or incorrect language blocks (merged mode):</strong><br>
+                Language blocks like <code>[[en]]</code> and <code>[[de]]</code> are not applied to
+                <code>questionvariables</code> or <code>feedbackvariables</code> to avoid breaking embedded functions.
+              </div>
+
+              <div class="mb-3">
+                <strong>"Invalid file format" error:</strong><br>
+                Only <code>.xml</code> and <code>.mbz</code> files are supported. The internal structure must match the
+                file type.
+              </div>
+
+              <div class="mb-3">
+                <strong>Uploading multiple files in a row:</strong><br>
+                Only the first file in a session is processed. Uploads are not queued.
+              </div>
+
+              <div class="mb-3">
+                <strong>Changes lost after refreshing the editor page:</strong><br>
+                The editor currently does not preserve session data. Avoid refreshing the page during editing.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Feedback Section -->
+<div class="alert alert-info mt-5" role="alert">
+  Feel stuck or have improvement ideas? Feel free to report an issue or suggestion on the
+  <a href="https://github.com/DEIN_REPO_LINK" class="alert-link" target="_blank">project repository</a>.
+</div>
+
+</div>
+{% endblock %}
