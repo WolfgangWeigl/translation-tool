@@ -70,26 +70,56 @@ A simple and powerful Flask-based app for translating XML and MBZ files via Libr
 
 ### Installation
 
-Clone the repository:
+#### 1. Clone the repository
 
 ```bash
 git clone https://github.com/WolfgangWeigl/translation-tool
 cd translation-tool
 ```
 
-Then start the container:
+---
+
+#### 2. Start the container
+
+##### Production Mode
+
+Builds an optimized setup for deployment:
 
 ```bash
 docker compose up --build -d
 ```
 
-Development mode:
+---
+
+#####  Development Mode (with Hot Reload)
+
+Ideal for local development – your code is mounted into the container, enabling **hot reload** behavior.  
+No rebuild is required after code changes unless dependencies change.
 
 ```bash
 docker compose -f docker-compose.dev.yml up --build -d
 ```
 
-> `--build` ensures a fresh build. `-d` runs it in detached mode.
+Changes to the code are applied immediately without restarting the container.
+
+---
+
+#####  Testing Mode
+
+Runs the test environment and stops on the first failing container:
+
+```bash
+docker compose -f docker-compose.test.yml up --build --abort-on-container-exit
+```
+
+---
+
+####  Notes
+
+- `--build` ensures a fresh image build (useful when dependencies are updated).
+- `-d` runs the containers in detached (background) mode.
+
+---
 
 ### Environment Configuration
 
