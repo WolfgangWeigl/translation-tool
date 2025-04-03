@@ -17,9 +17,11 @@ services:
     build: 
       context: .
       dockerfile: docker/Dockerfile.dev
+    working_dir: /workspace
     volumes:
       - ./app:/workspace/app:rw # code mounted into container
       - ./tests:/workspace/tests:rw # tests mounted into container
+      - ./wsgi.py:/workspace/wsgi.py:rw
       - ./.vscode:/workspace/.vscode:rw # vscode mounted into container
       - ./.devcontainer:/workspace/.devcontainer:rw # devcontainer mounted into container
     env_file:

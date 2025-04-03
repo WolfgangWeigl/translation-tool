@@ -1,16 +1,16 @@
 # docker/Dockerfile.test
-
 FROM python:3.12-slim
 
 WORKDIR /workspace
 
-ENV PYTHONPATH=/workspace/app
+ENV PYTHONPATH=/workspace
 
 COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt pytest coverage pytest-cov
+RUN pip install --no-cache-dir -r requirements.txt pytest pytest-cov pytest-mock
 
 COPY app/ app/
 COPY tests/ tests/
+COPY wsgi.py wsgi.py
 COPY env/test.env env/test.env
 
 CMD ["pytest", "--rootdir=tests", "--cov=app", "--cov-report=term-missing", "tests/"]

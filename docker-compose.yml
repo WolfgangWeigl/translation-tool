@@ -26,6 +26,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile.prod
     image: translationtool/flask
+    working_dir: /workspace
     ports:
       - "80:5000"  # Expose app on external port 80
     env_file:

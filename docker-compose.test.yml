@@ -7,8 +7,6 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.lt
-    # ports:
-    #   - "5002:5000"
     volumes:
       - libretranslate-models:/home/libretranslate/.local:rw
     healthcheck:
@@ -22,6 +20,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.test
+    working_dit: /workspace
     env_file:
       - env/test.env
     depends_on:

@@ -1,11 +1,14 @@
 # docker/Dockerfile.dev
 FROM python:3.12-slim
 
-WORKDIR /workspace/app
+WORKDIR /workspace
 
-COPY requirements.txt /workspace/app/requirements.txt
+COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt pytest
+
+COPY app/ app/
+COPY wsgi.py wsgi.py 
 
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+CMD ["python", "app/app.py"]
