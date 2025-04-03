@@ -45,16 +45,3 @@ def handle_upload(data):
         socketio.emit('log', {'message': 'MBZ-Dateien werden noch nicht unterstützt.'})
     else:
         socketio.emit('error', {'message': f"Unbekannter Dateityp: {data['fileType']}"})
-
-
-@socketio.on('get_diff_data')
-def get_diff_data():
-    if isinstance(temp_data.get('original'), bytes):
-        temp_data['original'] = temp_data['original'].decode('utf-8')
-    if isinstance(temp_data.get('translation'), bytes):
-        temp_data['translation'] = temp_data['translation'].decode('utf-8')
-    socketio.emit('diff_data', temp_data)
-
-@socketio.on('download')
-def download():
-    socketio.emit('file_data', temp_data['translation'])
