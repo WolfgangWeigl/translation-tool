@@ -1,11 +1,10 @@
-# translation/xml_translator.py
+# app/translation/xml_translator.py
 
 from lxml import etree as ET
-from translation.mask_patterns import mask_text, unmask_text
-from translation.libretranslate_api import translate_text
-from translation.merge_utils import merge_text_blocks
-from utils.progress import emit_progress
-
+from app.translation.mask_patterns import mask_text, unmask_text
+from app.translation.libretranslate_api import translate_text
+from app.translation.merge_utils import merge_text_blocks
+from app.utils.progress import emit_progress
 from flask import current_app
 
 def process_xml_translation(data, socketio=None):

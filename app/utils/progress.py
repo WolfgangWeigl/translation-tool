@@ -1,4 +1,4 @@
-# utils/progress.py
+# app/utils/progress.py
 
 def emit_progress(socketio, current, total, channel='translation_progress'):
     if not socketio or total == 0:

@@ -1,9 +1,9 @@
-# app.py
+# app/app.py
 
 from flask import Flask, render_template, jsonify
-from config import configure_app
-from socket_events import socketio
-from utils.file_utils import ensure_directories
+from app.config import configure_app
+from app.socket_events import socketio
+from app.utils.file_utils import ensure_directories
 
 app = Flask(__name__)
 configure_app(app)
@@ -35,7 +35,7 @@ def editor():
 
 @app.route('/get_diff_data')
 def get_diff_data():
-    from socket_events import temp_data
+    from app.socket_events import temp_data
 
     original = temp_data.get("original")
     translation = temp_data.get("translation")
@@ -66,7 +66,7 @@ def mbz():
 
 @app.route('/download')
 def download():
-    from socket_events import temp_data
+    from app.socket_events import temp_data
 
     if temp_data.get('transType') == 'multiple':
         merged = temp_data.get("merged")

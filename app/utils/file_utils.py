@@ -1,4 +1,4 @@
-# utils/file_utils.py
+# app/utils/file_utils.py
 
 import os
 import uuid

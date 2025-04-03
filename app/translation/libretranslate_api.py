@@ -1,4 +1,4 @@
-# translation/libretranslate_api.py
+# app/translation/libretranslate_api.py
 
 import requests
 

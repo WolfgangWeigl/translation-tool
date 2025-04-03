@@ -1,4 +1,4 @@
-# translation/merge_utils.py
+# app/translation/merge_utils.py
 
 def merge_text_blocks(original: str, translated: str, src_lang: str, dest_lang: str) -> str:
     return (

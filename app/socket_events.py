@@ -1,8 +1,8 @@
-# socket_events.py
+# app/socket_events.py
 
 from flask_socketio import SocketIO
 from flask import current_app
-from translation.xml_translator import process_xml_translation
+from app.translation.xml_translator import process_xml_translation
 
 socketio = SocketIO()
 

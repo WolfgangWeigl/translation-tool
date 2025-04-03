@@ -1,4 +1,4 @@
-# translation/mask_patterns.py
+# app/translation/mask_patterns.py
 
 import re
 
