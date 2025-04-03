@@ -1,0 +1,33 @@
+# docker-compose.test.yml
+name: translation-tool-test
+
+services:
+  libretranslate:
+    container_name: libretranslate-test
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.lt
+    # ports:
+    #   - "5002:5000"
+    volumes:
+      - libretranslate-models:/home/libretranslate/.local:rw
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s -f http://localhost:5000/languages || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  flask-test:
+    container_name: flask-test
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.test
+    env_file:
+      - env/test.env
+    depends_on:
+      libretranslate:
+        condition: service_healthy
+
+volumes:
+  libretranslate-models:
+    name: libretranslate-models
