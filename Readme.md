@@ -113,10 +113,11 @@ Once the containers are running:
 ## Roadmap
 
 - [X] Upload progress bar
+- [X] Translation progress bar
 - [ ] Drag & Drop upload UI
-- [ ] Persistent translation history
-- [ ] User authentication
-- [ ] Glossary / translation memory
+- [ ] MBZ support
+- [ ] Editor view without XML tags (only relevant STACK fields)
+- [ ] URL highlighting in editor view
 
 ## Contributing
 
