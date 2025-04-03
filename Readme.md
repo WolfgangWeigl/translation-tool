@@ -1,10 +1,10 @@
 <a id="readme-top"></a>
 
 <!-- PROJECT SHIELDS -->
-<!-- [![Contributors][contributors-shield]][contributors-url] -->
-<!-- [![Forks][forks-shield]][forks-url] -->
-<!-- [![Stargazers][stars-shield]][stars-url] -->
-<!-- [![Issues][issues-shield]][issues-url] -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 [![License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -21,14 +21,14 @@
   <p align="center">
     A web-based tool for translating XML and MBZ files, optimized for Moodle content.
     <br />
-    <a href="https://git.oth-aw.de/b566/translation-tool"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/WolfgangWeigl/translation-tool"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://git.oth-aw.de/b566/translation-tool">View Demo</a>
+    <a href="https://github.com/WolfgangWeigl/translation-tool">View Demo</a>
     ·
-    <a href="https://git.oth-aw.de/b566/translation-tool/issues/new?labels=bug">Report Bug</a>
+    <a href="https://github.com/WolfgangWeigl/translation-tool/issues/new?labels=bug">Report Bug</a>
     ·
-    <a href="https://git.oth-aw.de/b566/translation-tool/issues/new?labels=enhancement">Request Feature</a>
+    <a href="https://github.com/WolfgangWeigl/translation-tool/issues/new?labels=enhancement">Request Feature</a>
   </p>
 </div>
 
@@ -73,7 +73,7 @@ A simple and powerful Flask-based app for translating XML and MBZ files via Libr
 Clone the repository:
 
 ```bash
-git clone https://git.oth-aw.de/b566/translation-tool
+git clone https://github.com/WolfgangWeigl/translation-tool
 cd translation-tool
 ```
 
@@ -134,20 +134,20 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Wolfgang Weigl – [LinkedIn](https://linkedin.com/in/wolfgang-weigl-933885236/)  
 Project Website: [Projekt IdeaL | OTH Amberg-Weiden](https://www.oth-aw.de/forschung/forschungsprofil/forschungs-und-entwicklungsprojekte/ideal/)  
-Repository: [https://git.oth-aw.de/b566/translation-tool](https://git.oth-aw.de/b566/translation-tool)
+Repository: [https://github.com/WolfgangWeigl/translation-tool](https://github.com/WolfgangWeigl/translation-tool)
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- [contributors-shield]: https://img.shields.io/github/contributors/b566/translation-tool.svg?style=for-the-badge -->
-<!-- [contributors-url]: https://git.oth-aw.de/b566/translation-tool/graphs/contributors -->
-<!-- [forks-shield]: https://img.shields.io/github/forks/b566/translation-tool.svg?style=for-the-badge -->
-<!-- [forks-url]: https://git.oth-aw.de/b566/translation-tool/network/members -->
-<!-- [stars-shield]: https://img.shields.io/github/stars/b566/translation-tool.svg?style=for-the-badge -->
-<!-- [stars-url]: https://git.oth-aw.de/b566/translation-tool/stargazers -->
-<!-- [issues-shield]: https://img.shields.io/github/issues/b566/translation-tool.svg?style=for-the-badge -->
-<!-- [issues-url]: https://git.oth-aw.de/b566/translation-tool/issues -->
+MARKDOWN LINKS & **IMAGES**
+[contributors-shield]: https://img.shields.io/github/contributors/WolfgangWeigl/translation-tool.svg?style=for-the-badge
+[contributors-url]: https://git.oth-aw.de/WolfgangWeigl/translation-tool/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/WolfgangWeigl/translation-tool.svg?style=for-the-badge
+[forks-url]: https://git.oth-aw.de/WolfgangWeigl/translation-tool/network/members
+[stars-shield]: https://img.shields.io/github/stars/WolfgangWeigl/translation-tool.svg?style=for-the-badge
+[stars-url]: https://git.oth-aw.de/WolfgangWeigl/translation-tool/stargazers
+[issues-shield]: https://img.shields.io/github/issues/WolfgangWeigl/translation-tool.svg?style=for-the-badge
+[issues-url]: https://git.oth-aw.de/WolfgangWeigl/translation-tool/issues
 [license-shield]: https://img.shields.io/badge/license-MIT-blue?style=for-the-badge
-[license-url]: https://git.oth-aw.de/b566/translation-tool/blob/main/LICENSE
+[license-url]: https://git.oth-aw.de/WolfgangWeigl/translation-tool/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&colorB=0a66c2
 [linkedin-url]: https://linkedin.com/in/wolfgang-weigl-933885236/
 [Docker]: https://img.shields.io/badge/docker-555?style=for-the-badge&logo=docker&logoColor=white
