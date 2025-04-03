@@ -137,7 +137,7 @@ Project Website: [Projekt IdeaL | OTH Amberg-Weiden](https://www.oth-aw.de/forsc
 Repository: [https://github.com/WolfgangWeigl/translation-tool](https://github.com/WolfgangWeigl/translation-tool)
 
 
-MARKDOWN LINKS & **IMAGES**
+<!-- MARKDOWN LINKS & **IMAGES** -->
 [contributors-shield]: https://img.shields.io/github/contributors/WolfgangWeigl/translation-tool.svg?style=for-the-badge
 [contributors-url]: https://git.oth-aw.de/WolfgangWeigl/translation-tool/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/WolfgangWeigl/translation-tool.svg?style=for-the-badge
