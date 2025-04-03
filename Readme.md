@@ -78,14 +78,14 @@ cd translation-tool
 ```
 #### 2. Start the container
 
-- Production Mode
+##### Production Mode
 
 Builds an optimized setup for deployment:
 
 ```bash
 docker compose up --build -d
 ```
-- Development Mode (with Hot Reload)
+##### Development Mode (with Hot Reload)
 
 Ideal for local development – your code is mounted into the container, enabling **hot reload** behavior.  
 No rebuild is required after code changes unless dependencies change.
@@ -95,7 +95,7 @@ docker compose -f docker-compose.dev.yml up --build -d
 ```
 Changes to the code are applied immediately without restarting the container.
 
-- Testing Mode
+##### Testing Mode
 
 Runs the test environment and stops on the first failing container:
 
