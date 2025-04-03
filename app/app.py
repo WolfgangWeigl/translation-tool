@@ -75,5 +75,8 @@ def download():
     translated = temp_data.get("translation")
     return translated.decode('utf-8') if isinstance(translated, bytes) else translated
 
-if __name__ == '__main__':
+def run_app():
     socketio.run(app=app, host=app.config['HOST'], port=app.config['PORT'], allow_unsafe_werkzeug=True)
+
+if __name__ == '__main__':
+    run_app()
