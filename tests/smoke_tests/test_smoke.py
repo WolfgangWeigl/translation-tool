@@ -1,5 +1,6 @@
-import requests
+import pytest
 
-def test_app_is_running():
-    response = requests.get("http://localhost:80")
+@pytest.mark.smoke
+def test_server_is_running(client):
+    response = client.get("/")
     assert response.status_code == 200
