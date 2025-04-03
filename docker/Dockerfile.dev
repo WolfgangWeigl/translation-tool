@@ -13,4 +13,4 @@ COPY wsgi.py wsgi.py
 
 EXPOSE 5000
 
-CMD ["python", "app/app.py"]
+CMD ["python", "-m", "app.app"]

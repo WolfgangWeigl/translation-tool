@@ -20,7 +20,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.test
-    working_dit: /workspace
+    working_dir: /workspace
     env_file:
       - env/test.env
     depends_on:
