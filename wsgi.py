@@ -1,3 +1,6 @@
+# app/wsgi.py
+# pragma: no cover
+
 from app import app, socketio
 
 if __name__ == "__main__":
