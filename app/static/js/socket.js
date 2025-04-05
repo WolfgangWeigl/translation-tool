@@ -44,7 +44,8 @@ form.addEventListener('submit', function (event) {
     // Upload
     socket.emit('upload', {
       fileName: fileInput.files[0].name,
-      fileType: document.querySelector('[data-type]').getAttribute('data-type'),
+      // fileType: document.querySelector('[data-type]').getAttribute('data-type'),
+      fileType: fileInput.files[0].type,
       fileData: fileInput.files[0],
       srcLang: originalLanguage.value,
       destLang: targetLanguage.value,

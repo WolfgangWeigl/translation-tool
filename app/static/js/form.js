@@ -44,10 +44,36 @@ document.getElementById('originalLanguage').addEventListener('change', function 
     }
   });
 
-  // Set default value after a refresh
-  window.onload = function() {
-    // document.getElementById('originalLanguage').value = ''; 
-    // document.getElementById('targetLanguage').value = ''; 
-    document.getElementById('upload-form').reset();
-  }
+  // // Set default value after a refresh
+  // window.onload = function() {
+  //   // document.getElementById('originalLanguage').value = ''; 
+  //   // document.getElementById('targetLanguage').value = ''; 
+  //   document.getElementById('upload-form').reset();
+  // }
   
+  // Demo Mode
+  document.addEventListener('DOMContentLoaded', function () {
+    const isDemo = document.querySelector('[data-demo]')?.getAttribute('data-demo') === 'True';
+
+    if (isDemo) {
+      const fileInput = document.getElementById('fileinput');
+      const fileName = document.getElementById('filename');
+      const originalLanguage = document.getElementById('originalLanguage');
+      const targetLanguage = document.getElementById('targetLanguage');
+
+      const blob = new Blob(["<root></root>"], { type: "DEMO" });
+      const demoFile = new File([blob], 'demo.xml', { type: 'DEMO' });
+      const dt = new DataTransfer();
+      dt.items.add(demoFile);
+      fileInput.files = dt.files;
+      fileName.textContent = demoFile.name;
+
+      originalLanguage.value = 'de';
+      originalLanguage.dispatchEvent(new Event('change'));
+      targetLanguage.value = 'en';
+    }
+
+
+
+
+  });

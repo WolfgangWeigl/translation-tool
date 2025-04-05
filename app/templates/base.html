@@ -56,12 +56,10 @@
 
             <div class='collapse navbar-collapse' id='navbarNavAltMarkup'>
                 <div class='navbar-nav'>
-                    <a class='nav-link {% if current_page == "home" %}active{% endif %}' aria-current='page'
-                        href='/'>Home</a>
-                    <a class='nav-link {% if current_page == "guide" %}active{% endif %}'
-                        href='{{ url_for("guide") }}'>Guide</a>
+                    <a class='nav-link {% if current_page == "home" %}active{% endif %}' aria-current='page' href='/'>Home</a>
+                    <a class='nav-link {% if current_page == "guide" %}active{% endif %}' href='{{ url_for("guide") }}'>Guide</a>
+                    <a class='nav-link {% if current_page == "demo" %}active{% endif %}' href='{{ url_for("demo") }}'>Demo</a>
                     <a class='nav-link disabled' href='/about'>About</a>
-                    <a class='nav-link disabled' aria-disabled='true'>Disabled</a>
                 </div>
             </div>
         </div>

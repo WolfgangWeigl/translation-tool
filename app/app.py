@@ -1,6 +1,6 @@
 # app/app.py
 
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, url_for
 from app.config import configure_app
 from app.socket_events import socketio
 from app.utils.file_utils import ensure_directories
@@ -50,12 +50,19 @@ def get_diff_data():
         "translation": translation
     })
 
+@app.route('/demo')
+def demo():
+    from libretranslatepy import LibreTranslateAPI
+    lt = LibreTranslateAPI(app.config['LT_URL'])
+    langs = lt.languages()
+    return render_template('xml.html', current_page='demo', type="XML", langs=sorted(langs, key=lambda x: x["name"]), demo=True)
+
 @app.route('/xml')
 def xml():
     from libretranslatepy import LibreTranslateAPI
     lt = LibreTranslateAPI(app.config['LT_URL'])
     langs = lt.languages()
-    return render_template('xml.html', current_page='home',type="XML", langs=sorted(langs, key=lambda x: x["name"]))
+    return render_template('xml.html', current_page='home', type="XML", langs=sorted(langs, key=lambda x: x["name"]))
 
 @app.route('/mbz')
 def mbz():

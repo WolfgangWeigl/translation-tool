@@ -17,7 +17,7 @@
 {% endwith %}
 
 <!-- JS Code -->
-<script data-langs='{{ langs | tojson }}' src="{{ url_for('static', filename='js/form.js') }}"></script>
+<script data-langs='{{ langs | tojson }}' {% if demo %} data-demo='{{demo}}' {% endif %} src="{{ url_for('static', filename='js/form.js') }}"></script>
 <script data-type='{{ type }}' src="{{ url_for('static', filename='js/socket.js') }}"></script>
 
 {% endblock %}
